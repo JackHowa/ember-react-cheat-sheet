@@ -6,33 +6,11 @@ In React when exporting a component, we must use default exports vs named export
 
 In ember we already use default exports:
 ```js title="component.js" showLineNumbers
-export default class OrganizationSelector extends Component {
-  @service('user') userService;
-  matcher = (item, searchString) =>
-    defaultMatcher(`${item.shortName} - ${item.name}`, searchString);
-
-  @action
-  isGeoRestricted(organization) {
-    const orgRestrictions =
-      get(organization?.organizationStatus || {}, 'restrictions') || [];
-    return (
-      this.userService?.hasExpelEmail &&
-      orgRestrictions.some((r) => r.includes('GEO'))
-    );
-  }
-}
+export default class OrganizationSelector extends Component {}
 ```
 
 ```hbs title="template.hbs"  showLineNumbers
- <OrganizationSelector
-        class="organization-selector ml-3"
-        @organizations={{this.organizations}}
-        @selected={{or
-          this.organizationService.current
-          (find-by "id" undefined this.organizations)
-        }}
-        @organizationSelected={{@setCurrentOrganization}}
-      />
+ <OrganizationSelector />
 ```
 
 ## React
